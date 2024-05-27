@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "PAMA.sln"
+    "dotnet.defaultSolution": "PAMA.sln",
+    "dotnet.preferCSharpExtension": true
 }
