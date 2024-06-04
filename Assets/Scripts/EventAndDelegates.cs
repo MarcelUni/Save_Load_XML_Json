@@ -6,8 +6,8 @@ using System;
 public class EventAndDelegates : MonoBehaviour
 {
     public delegate void SpacePressed(); 
-    //public SpacePressed OnSpacePressed;
     public event SpacePressed OnSpacePressed;
+    //public SpacePressed OnSpacePressed;
 
     void Start()
     {
@@ -40,5 +40,24 @@ public class EventAndDelegates : MonoBehaviour
     {
         Debug.Log("Three");
         OnSpacePressed -= WriteThree;
+        EventSubscriber eventSub = new EventSubscriber(this);
+    }
+}
+
+public class EventSubscriber
+{
+    private EventAndDelegates eventAndDelegates;
+
+    public EventSubscriber(EventAndDelegates eventAndDelegates)
+    {
+        this.eventAndDelegates = eventAndDelegates;
+        
+        this.eventAndDelegates.OnSpacePressed += WriteFour;
+    }
+
+    private void WriteFour()
+    {
+        Debug.Log("Four from other subscriber class");
+        eventAndDelegates.OnSpacePressed -= WriteFour;
     }
 }
